@@ -1,0 +1,56 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="1000" height="1000"></canvas>
+    <script>
+    // powyzej tworzymy canvas
+    // ponizej funkcja wczytujaca obrazek oraz rysujaca na canvasie
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var imageObj = new Image();
+      imageObj.src = "mojaRyba.png";  // ładuje do obiektu imageObj obraz ryby
+      imageObj.onload = function() {  // funkcja wyswietlajaca na widok
+        context.drawImage(imageObj, 69, 5); // rysowanie podstawowej i pierwszej ryby
+        
+         var scaleV = 0.9;  // deklaracja poczatkowej wartosci odpowiadajace za kolejne rozmiary ryb
+         var x = 500;       // deklaracja poczatkowej wspolrzednej x ryby
+         var y = 50;        // deklaracja poczatkowej wspolrzednej y ryby
+         var rotateV = 0.5; // deklaracja poczatkowej wspolrzednej odpowiadajacej za kolejny obrot ryby
+
+         // petla for rysujaca kolejne ryby
+         for (var n = 0; n < 10; n++) {
+            // kolejne skalowanie ryby nastepuje o odjecie wartosci 0.05 od wartosci poczatkowej (patrz wyzej)
+            scaleV -= 0.05;
+            
+            // instrukcja warunkowa mowiaca o tym ze do narysowanej ryby nr 2 wartosci beda odejmowane o podane
+            // wartosci a pozniej beda dodawane do wartosci poczatkowych
+            if(n<3){
+              x -= 60;
+              y -= -20;
+            }else{
+              x += 80;
+              y += 50;
+            }
+            
+            // kolejny obrot ryby nastepuje o dodanie wartosci 0.1 do wartosci poczatkowej (patrz wyzej)
+            rotateV += 0.1;
+
+          // kolejno przesuniecie, rotacja, skalowanie oraz rysowanie ryby 
+          // wraz z odpowiednimi parametrami, ktore wykorzystujemy wyzej
+          context.translate(x, y); 
+          context.rotate(rotateV); 
+          context.scale(scaleV, scaleV);
+          context.drawImage(imageObj, 0, 0);
+         }     
+      };
+    </script>
+  </body>
+</html>      

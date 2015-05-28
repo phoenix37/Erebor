@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="200" style="border:1px solid black;"></canvas>
+    <script>
+    // powyzej definicja canvasa na ktorym bedziemy rysowac
+
+    // ponizej funkcja wczytujaca obrazy ryby z dysku
+      function loadImages(sources, callback) {
+        var images = {};
+        var loadedImages = 0;
+        var numImages = 0;
+        // get num of sources
+        for(var src in sources) {
+          numImages++;   // zwiekszenie licznika odpowiadajacego za ilosc obrazow
+        }
+        for(var src in sources) {
+          images[src] = new Image();
+          images[src].onload = function() {
+            if(++loadedImages >= numImages) {
+              callback(images);
+            }
+          };
+          images[src].src = sources[src];  // zapisa obrazu do tablicy
+        }
+      }
+      // wywolanie elementow canvas
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      // tablica sources zawierajaca trzy obrazy mojaRyba.png pobrane z dysku komputera
+      var sources = {
+        ryba1: "mojaRyba.png",
+        ryba2: "mojaRyba.png",
+        ryba3: "mojaRyba.png"
+      };
+
+      // wczytanie obrazow z tablicy sources i rysowanie na canvasie z opowiednimi przekszalceniami i wspolrzednymi
+      loadImages(sources, function(images) {
+        context.drawImage(images.ryba3, 200, 15, 350, 170);
+        context.drawImage(images.ryba2, 20, 15, 350, 170);
+        context.drawImage(images.ryba1, -170, 15, 350, 170);
+      });
+
+    </script>
+  </body>
+</html> 

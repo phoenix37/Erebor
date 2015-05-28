@@ -1,0 +1,62 @@
+<!DOCTYPE HTML> 
+<html>
+    <head>
+        <script src="animation.js">
+        </script>
+       
+        <script>
+        window.addEventListener('load', function () {
+            var img = new Image,
+            ctx = document.getElementById('myCanvas').getContext('2d');
+  
+            // przypisuje do obiektu obraz ryby
+            img.src = "mojaRyba.png";
+            img.addEventListener('load', function () {
+
+            var interval = setInterval(function() {
+            var losowa_wartosc;
+            var typ;
+            losowa_wartosc = Math.random(); // losuje dowolna wartosc z przedzialu [0,1]
+            // instrukcja warunkowa
+            // jesli wartosc mniejsza od 0.5 to rysujemy rybe od lewej strony plotna
+            // w przeciwnym wypadku od prawej strony plotna
+            if(losowa_wartosc < 0.5){
+                var x = 0, y = 0;
+                typ = 0;
+            }else{
+                var x = 500, y = 0;
+                 //ctx.scale(-1,1); //-> probowalem tutaj zrobic odbicie lustrzane ryby ale nie dziala, choc w 
+                // zadaniu nie ma o tym mowy wiec nie kombinowalem z tym
+            }
+
+            return function () {
+                ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height); // kasowanie pikseli w obrebie danego canvasa 
+                ctx.drawImage(img, x, y); // rysujemy rybe
+                // instrukcja warunkowa
+                // jesli typ jest rowny 0 to jak wyzej rysujemy od lewej wiec zwiekszamy x
+                if(typ == 0){
+                    x += 1;
+                    // jesli x wiekszy od szerokosci canvasa(czyli jak wyjdzie poza plotno)
+                    // to rysuj od nowa
+                    if (x > ctx.canvas.width) {
+                    x = 0;
+                    } 
+                }else{
+                    // jesli typ rozny od 0 to rysuj od prawej wiec zmniejszamy x
+                    x -= 1;
+                    // jesli x mniejszy od podanej wartosci to rysuj od poczatku 
+                    if (x < -180) { 
+                    x = 500;
+                    }
+                }
+            };
+            }(), 1000/40);
+            }, false);
+        }, false);
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="800" height="250" style="border:1px solid black;">
+        </canvas>
+    </body>
+</html>

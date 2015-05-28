@@ -1,0 +1,130 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <style>
+      body {
+        margin: 0px;
+        padding: 0px;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="myCanvas" width="578" height="400"></canvas>
+    <script>
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var centerX = 0;
+      var centerY = 0;
+      var radius = 50;
+
+      // zapisuje stan
+      context.save();
+
+      // tlumaczenie kontekstu
+      context.translate(canvas.width / 2, canvas.height / 2);
+
+      // skalowanie horyzontalne
+      context.scale(2, 1);
+
+      // rysowanie owala(kola)
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.restore();
+      // definicje stylu
+      context.fillStyle = '#FFFF00';
+      context.fill();
+      context.lineWidth = 5;
+      context.strokeStyle = 'black';
+      context.stroke();
+
+    </script>
+    <script>
+    // rysowanie powierzchni oka, najpierw definiujemy wspolrzedne
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2 + 30;
+      var centerY = canvas.height / 2 - 15;
+      var radius = 20;
+
+    // rysujemy koło, kolor biały i umieszczamy na canvasie
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'white';
+      context.fill();
+      context.strokeStyle = '#003300';
+      context.stroke();
+    </script>
+    <script>
+    // wewnetrzna strona oka
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+      var centerX = canvas.width / 2 + 30;
+      var centerY = canvas.height / 2 - 15;
+      var radius = 2;
+
+    // rysujemy czarna kropke w srodku bialego kola
+      context.beginPath();
+      context.arc(centerX, centerY, radius, 0, 2 * Math.PI, false);
+      context.fillStyle = 'white';
+      context.fill();
+      context.strokeStyle = '#003300';
+      context.stroke();
+    </script>
+    <script>
+    // grzbiet ryby
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+    // definiujemy polozenie grzebietu ryby i rysujemy od punktu startowego do kolejnego 
+    // punkt po punkcie, kolor pomaranczowy
+      context.beginPath();
+      context.moveTo(300, 150);
+      context.lineTo(325, 120);
+      context.lineTo(328, 130);
+      context.lineTo(340, 120);
+      context.lineTo(345, 130);
+      context.lineTo(355, 110);
+      context.lineTo(355, 160);
+      context.lineTo(355, 160);
+      context.lineTo(300, 151);
+      context.fillStyle = 'orange';
+      context.fill();
+      context.stroke();
+    </script>
+    <script>
+    // usta ryby
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      // analogicznie jak wyzej, definujemy wpolrzedne i rysujemy od punktu do punktu, kolor czerwony
+      context.beginPath();
+      context.moveTo(370, 200);
+      context.lineTo(390, 170);
+      context.lineTo(400, 180);
+      context.lineTo(390, 190);
+      context.lineTo(400, 190);
+      context.lineTo(390, 200);
+      context.lineTo(370, 200);
+ 
+      context.fillStyle = 'red';
+      context.fill();
+      context.stroke();
+    </script>
+    <script>
+    // ogon ryby
+      var canvas = document.getElementById('myCanvas');
+      var context = canvas.getContext('2d');
+
+      // wspolrzedne puktow, rysujemy, kolor zółty
+      context.beginPath();
+      context.moveTo(190, 200);
+      context.lineTo(150, 150);
+      context.lineTo(150, 250);
+      context.lineTo(198, 180);
+      
+      context.fillStyle = 'yellow';
+      context.fill();
+      context.stroke();
+    </script>
+  </body>
+</html> 
