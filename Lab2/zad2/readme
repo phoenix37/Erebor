@@ -1,0 +1,48 @@
+Zadanie pierwsze jak cos to tez mam ale chyba kazdy zrobił :)
+
+Na linuxie robimy po kolei:
+konsola:
+php -r "readfile('http://symfony.com/installer');" > symfony.phar
+sudo mv symfony.phar /usr/local/bin/symfony
+chmod a+x /usr/local/bin/symfony
+symfony
+symfony new myproject
+cd myproject/
+php app/console server:run
+￼
+W przeglądarce wpisujemy adres http://localhost:8000/.
+
+Kolejnym krokiem będzie konfiguracja bazy danych. W tym celu edytujemy plik myproject/app/config/parameters.yml:
+
+# app/config/parameters.yml
+parameters:
+    database_driver:
+    database_host:
+    database_name:
+    database_user:
+    database_password:  password
+# ...
+
+php app/console doctrine:database:create
+
+teraz wklejamy zawartosc appBundle do myProject/src/appBundle :)
+
+Sprawdzamy czy zawartośc myProject/app/config/routing.yml jest:
+
+#product_demo:
+#    resource: ”@ProductDemoBundle/Controller”
+#	type:     annotation
+
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+konsola:
+php app/console doctrine:schema:update --force
+php app/console doctrine:generate:entities AppBundle
+
+teraz wszystko powinno dzialac jak nie to trzeba zatrzymac server symfoni i odpalic jeszzce raz
+ctrl-c a nasteptnie 
+php app/console server:run
+
+Jak ktoś potrzebuje cos konkretnego do pomocy z podpunktami to pisać do mnie :)
