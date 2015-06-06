@@ -1,3 +1,6 @@
+@EDIT 6.06.2015
+Dodałem link w 'edit.html' do logowania/wylogowania.
+
 Gotowy projekt.
 
 Co należy z tą paczką zrobić (za wyjątkiem podpisania się i wysłania)?
