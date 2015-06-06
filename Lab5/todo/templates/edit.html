@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="POST" class="post-form">{% csrf_token %}
+    <table>
+        <tr class="row">
+            <td class="label">Tytuł :</td><td class="value">{{task.name}}</td>
+        </tr>
+        <tr class="row">
+            <td
+                class="label">Właściciel:</dt><td
+                    class="value">{{task.user}}</td>
+            </tr>
+            <tr class="row">
+                <td
+                    class="label">Opis:</td><td
+                    class="value">{{task.description}}</td>
+            </tr>
+            {% for field in form %}
+            <tr class="row">
+                <td>{{ field.label_tag }}</td> <td>{{ field }}</td>
+            </tr>
+            <tr><td class="error">{{ field.errors }}</td><td></td></tr>
+            {% endfor %}
+            <tr class="row">
+                <td
+                    class="label">Data
+                    utworzenia:</td><td
+                    class="value">{{task.publication_date}}</div>
+            </tr>
+            {% if user.is_authenticated %}
+            <tr class="row">
+                <td><input type="submit" value="Update"></td><td></td>
+                <td><a href="/accounts/logout">wyloguj</a></td>
+            </tr>
+            {% else %}
+            <tr>
+                <td>Aby móc edytować wpisy, należy się <a href="/accounts/login/">zalogować.</a></td>
+            </tr>
+            {% endif %}
+        </table>
+    </form>
+    {% endblock %}

@@ -1,0 +1,20 @@
+<!-- prosty dokument do uwierzytelnienia użytkowników -->
+{% extends "base.html" %}
+
+{% block content %}
+
+  {% if form.errors %}
+    <p class="error">Podałeś niewłaściwy login lub hasło.</p>
+  {% endif %}
+
+  <form action="" method="post">{% csrf_token %}
+    <label for="username">Login</label>
+    <input type="text" name="username" value="" id="username">
+    <label for="password">Hasło:</label>
+    <input type="password" name="password" value="" id="password">
+
+    <input type="submit" value="login" />
+    <input type="hidden" name="next" value="{{ next|escape }}" />
+  </form>
+
+{% endblock %}
