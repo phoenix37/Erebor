@@ -15,3 +15,6 @@ User: admin, hasło: admin.
 Można tam zmieniać wszystko, co nas interesuje.
 
 2. Zmodyfikować niektóre pliki, np. skasować powitanie usera (nie wymagane w projekcie).
+
+UWAGA!!!
+Lab jeszcze nie jest oceniony przez mgr Zabłockiego.
