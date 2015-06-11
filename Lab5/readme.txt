@@ -23,3 +23,5 @@ Można tam zmieniać wszystko, co nas interesuje.
 
 UWAGA!!!
 Lab jeszcze nie jest oceniony przez mgr Zabłockiego.
+
+W razie jakichkolwiek pytań, pisz na facebooku - Jakub Ligęza
