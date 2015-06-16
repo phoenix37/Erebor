@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl" ng-app="calendar">
+<head>
+<title>Calendar</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link rel="stylesheet" type="text/css" href="style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+<script src="app.js"></script>
+</head>
+<body ng-controller='CalendarController as calCtrl'>
+<div class="table">
+<div class="row" ng-repeat='days in calCtrl.series'>
+<div class="cell" ng-repeat='day in days'>
+<h4>{{ $index + 1 }}</h4>
+<img ng-src="{{ day.imgUrl }}">
+<h5>{{ day.date }}</h5>
+<span>{{ day.description }}</span>
+<p ng-show='day.evaluated'><img ng-repeat="x in calCtrl.range(day.stars)" ng-src='img/star.png'></p>
+<a href="#openModal2" ng-click='calCtrl.edit($parent.$index, $index, day)'>Edytuj</a> <!-- wywolanie funkcji edit i przekazania parametrow do indentyfikacji obiektu -->
+</div>
+<div class="cell">
+<ul>
+<li>
+<a href="#openModal" ng-click='calCtrl.setSeriesNo($index)'>Dodaj notatke</a>
+</li>
+<li>
+<a ng-click='calCtrl.addSeries(days)'>Dodaj serie</a>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="openModal" class="modalDialog">
+<div>
+<a href="#close" title="Close" class="close">X</a>
+<h2>Dodaj</h2>
+<form action='#close' ng-controller='FormController as formCtrl'
+ng-submit='formCtrl.add(calCtrl.getSeries())'>
+<div class='form-field'>
+<span class='sp'>Wybierz obrazek:</span><br />
+<div class="selection-wrapper"
+ng-controller='DropDownListController as ddList'>
+<div class="selected-item-box" ng-click='ddList.toggle()'>
+<span class="dropdown-icon"></span>
+<ul class="items-list">
+<li>
+<img ng-src="{{ record.imgUrl }}"/>
+</li>
+</ul>
+</div>
+<div class="list" ng-show='ddList.clicked'>
+<ul class="items-list">
+<li ng-click='ddList.select($index)'
+ng-repeat='item in ddList.itemsList'>
+<img ng-src="{{ item }}" />
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class='form-field'>
+<span class='sp'>Chcesz zaglosować?:</span>
+<input type='checkbox' ng-model='record.evaluated'>
+</div>
+<div class='form-field' ng-show='record.evaluated'>
+<span class='sp'>Głos:</span>
+<input type='radio' ng-repeat='x in calCtrl.range(5)'
+ng-model='record.stars' value='{{x}}'>
+</div>
+<div class='form-field'>
+<span class='sp'>Opis (opcjonalnie):</span><br />
+<textarea ng-model='record.description'></textarea>
+</div>
+<div class='form-field'>
+<input type='submit' value='Add observation'>
+</div>
+</form>
+</div>
+</div>
+
+
+<div id="openModal2" class="modalDialog"> <!-- okno dialogowe przeznaczone do edycji -->
+<div>
+<a href="#close" title="Close" class="close">X</a>
+<h2>Edycja</h2>
+<form action='#close' ng-controller='CalendarController as formCtrl'
+ng-submit='formCtrl.edit2(record)'> <!-- odwolanie do funkcji edit2 ktora nadpisze zmiany -->
+<div class='form-field'>
+<span class='sp'>Wybierz obrazek:</span><br />
+<div class="selection-wrapper"
+ng-controller='DropDownListController as ddList'>
+<div class="selected-item-box" ng-click='ddList.toggle()'>
+<span class="dropdown-icon"></span>
+<ul class="items-list">
+<li>
+<img ng-src="{{ record.imgUrl }}"/>
+</li>
+</ul>
+</div>
+<div class="list" ng-show='ddList.clicked'>
+<ul class="items-list">
+<li ng-click='ddList.select($index)'
+ng-repeat='item in ddList.itemsList'>
+<img ng-src="{{ item }}" />
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class='form-field'>
+<span class='sp'>Chesz zaglosować?:</span>
+<input type='checkbox' ng-model='record.evaluated'>
+</div>
+<div class='form-field' ng-show='record.evaluated'>
+<span class='sp'>Głos:</span>
+<input type='radio' ng-repeat='x in calCtrl.range(5)'
+ng-model='record.stars' value='{{x}}'>
+</div>
+<div class='form-field'>
+<span class='sp'>Opis (opcjonalnie):</span><br />
+<textarea ng-model='record.description'></textarea>
+</div>
+<div class='form-field'>
+<input type='submit' value='Zastosuj zmiany'>
+</div>
+</form>
+</div>
+</div>
+
+
+
+</body>
+</html>
