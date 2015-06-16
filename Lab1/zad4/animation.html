@@ -1,0 +1,27 @@
+<!DOCTYPE HTML> 
+<html>
+    <head>
+        <script src="animation.js">
+        </script>
+        <script>
+            window.onload = function(){
+                var anim = new Animation("myCanvas");
+                 
+                // określenie funkcji drawStage
+                anim.setDrawStage(function(){
+                    // aktualizacja
+					          // czyszczenie
+					          // rysowanie
+                });
+                
+                // uruchomienie animacji
+                anim.start(); 
+
+            };
+        </script>
+    </head>
+    <body>
+        <canvas id="myCanvas" width="600" height="250" style="border:1px solid black;">
+        </canvas>
+    </body>
+</html>
